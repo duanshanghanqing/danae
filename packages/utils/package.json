@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "gaojunfeng <490771426@qq.com>",
-  "homepage": "",
-  "license": "ISC",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
@@ -15,6 +13,12 @@
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/duanshanghanqing/danae",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duanshanghanqing/danae.git"
   },
   "dependencies": {
     "axios": "^0.21.1",
