@@ -4,7 +4,7 @@
   "description": "> TODO: description",
   "author": "gaojunfeng <490771426@qq.com>",
   "bin": {
-    "danae-cli": "bin/index.js"
+    "danae": "bin/index.js"
   },
   "main": "bin/index.js",
   "directories": {
