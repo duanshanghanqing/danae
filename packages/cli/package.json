@@ -1,0 +1,57 @@
+{
+  "name": "danae-cli",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "gaojunfeng <490771426@qq.com>",
+  "bin": {
+    "danae-cli": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "homepage": "",
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^7.2.0",
+    "danae-utils": "file:../utils",
+    "fs-extra": "^9.1.0",
+    "inquirer": "^8.0.0",
+    "path-exists": "^4.0.0",
+    "shelljs": "^0.8.4",
+    "tree-node-cli": "^1.4.0"
+  },
+  "engines": {
+    "node": "^12.0.0 || >= 14.0.0"
+  },
+  "frame-types": [
+    {
+      "name": "React",
+      "value": "react",
+      "gitUrl": "https://github.com/duanshanghanqing/react-webpack-typescript.git"
+    },
+    {
+      "name": "React Server Side Render",
+      "value": "react_ssr",
+      "gitUrl": "https://github.com/duanshanghanqing/react-ssr.git"
+    },
+    {
+      "name": "Vue3",
+      "value": "vue3",
+      "gitUrl": "https://github.com/duanshanghanqing/webpack5-vue3.git"
+    },
+    {
+      "name": "Vue3 Server Side Render",
+      "value": "vue3_ssr",
+      "gitUrl": "https://github.com/duanshanghanqing/vue3_ssr.git"
+    }
+  ]
+}
