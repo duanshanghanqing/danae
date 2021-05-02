@@ -17,6 +17,9 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
+  "bugs": {
+    "url": "https://github.com/duanshanghanqing/danae/issues"
+  },
   "keywords": [
     "cli"
   ],
