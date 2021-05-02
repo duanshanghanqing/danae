@@ -9,7 +9,7 @@ const tree = require('tree-node-cli');
 const pkg = require('../../package.json');
 
 module.exports = async function (projectName, options) {
-    // 查看支持的创建的项目类型
+    // View the supported created project types
     const frameTypes = pkg['frame-types'];
     if (!Array.isArray(frameTypes) || (Array.isArray(frameTypes) && frameTypes.length === 0)) {
         return;

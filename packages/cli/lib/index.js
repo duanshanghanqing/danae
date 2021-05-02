@@ -12,7 +12,7 @@ module.exports = function () {
         .usage('<command> [options]')
         .version(pkg.version, '', 'version number');
 
-    // 添加 canna create projectName
+    // canna create projectName
     program.command('create [projectName]')
         .description('create a project or package')
         .option('-s, --show', 'view the types that support project creation')
