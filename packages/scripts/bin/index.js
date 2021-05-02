@@ -15,12 +15,12 @@ init(require('../package.json'), function () {
   const args = process.argv.slice(2);
 
   const scriptIndex = args.findIndex(
-    x => x === 'build' || x === 'eject' || x === 'start' || x === 'test'
+    x => x === 'start' || x === 'build' || x === 'lint' || x === 'lint-fix'
   );
   const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
   const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
 
-  if (['build', 'eject', 'start', 'test'].includes(script)) {
+  if (['start', 'build', 'lint', 'lint-fix'].includes(script)) {
     const result = crossSpawn.sync(
       process.execPath,
       nodeArgs

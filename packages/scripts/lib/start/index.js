@@ -10,34 +10,36 @@ process.on('unhandledRejection', err => {
 });
 
 const webpack = require('webpack');
-const baseConfig = require('../webpack.config/webpack.base.config');
 
-// function runWebpack(config) {
+// build dev
+// const config = require('../config/webpack.dev.config');
+// function runWebpack(_config = {}) {
 //   return new Promise((resolve, reject) => {
-//       return webpack(config).run((err, stats) => {
+//       return webpack(_config).run((err, stats) => {
 //           return err ? reject(err) : resolve(stats);
 //       });
 //   });
 // }
 
-// (async function() {
-//   await runWebpack(baseConfig);
+// (async function () {
+//   try {
+//       await runWebpack(config);
+//   } catch (error) {
+//       console.error(error);
+//   }
 // })();
 
-const serverConfig = require('../webpack.config/webpack.dev.server.config');
-const WebpackDevServer = require('webpack-dev-server');
-const compiler = webpack(baseConfig);
-const devServer = new WebpackDevServer(compiler, serverConfig);
-
-// Tools like Cloud9 rely on this.
-const DEFAULT_PORT = 3000;
-const HOST = '0.0.0.0';
-devServer.listen(DEFAULT_PORT, HOST, err => {
+// start dev server
+const WebpackDevServer = require('webpack-dev-server')
+const devConfig = require('../config/webpack.dev.config');
+const devServerConfig = require('../config/webpack.dev.server.config');
+const compiler = webpack(devConfig);
+const devServer = new WebpackDevServer(compiler, devServerConfig.devServer);
+const PORT = devServerConfig.devServer.port || process.env.PORT || 3000;
+const HOST = devServerConfig.devServer.host || process.env.HOST || '0.0.0.0';
+devServer.listen(PORT, HOST, err => {
   if (err) {
     return console.log(err);
   }
-  console.log('ok');
-  // console.log(chalk.cyan('Starting the development server...\n'));
-  // openBrowser(urls.localUrlForBrowser);
-});
-
+  console.log('Starting the development server...\n');
+})
