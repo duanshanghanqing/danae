@@ -32,11 +32,13 @@ function spawn(cmd, code, option) {
 
 function spawnAsyanc(cmd, code, option = {}) {
     return new Promise((resolve, reject) => {
-        const p = spawn(cmd, code, option);
-        p.on('error', e => {
+        const child = spawn(cmd, code, option);
+        child.stdout.pipe(process.stdout);// output stream
+        child.stderr.pipe(process.stderr);// error stream
+        child.on('error', e => {
             reject(e);
         });
-        p.on('exit', code => {
+        child.on('exit', code => {
             resolve(code);
         });
     });

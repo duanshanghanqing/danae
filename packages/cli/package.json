@@ -30,6 +30,7 @@
     "url": "https://github.com/duanshanghanqing/danae.git"
   },
   "dependencies": {
+    "clear": "^0.1.0",
     "colors": "^1.4.0",
     "commander": "^7.2.0",
     "danae-utils": "^0.0.1",
