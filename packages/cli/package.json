@@ -1,7 +1,7 @@
 {
   "name": "danae-cli",
-  "version": "0.0.2",
-  "description": "> TODO: description",
+  "version": "0.0.3",
+  "description": "a front end development build set",
   "author": "gaojunfeng <490771426@qq.com>",
   "bin": {
     "danae": "bin/index.js"
