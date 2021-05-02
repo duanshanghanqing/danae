@@ -11,7 +11,7 @@
 
 ### after installation,
 
-    canna --version
+    danae --version
 
 ## upDate
 
@@ -23,4 +23,4 @@
 
 ## create a project or package
 
-    canna create hello-world
+    danae create hello-world
