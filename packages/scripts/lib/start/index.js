@@ -45,8 +45,8 @@ if ( projectType === 'vue') {
 // react project
 else if (projectType === 'react') {
   startDevServer(
-    require('../webpack.config/vue/dev'), 
-    require('../webpack.config/vue/devServer').devServer
+    require('../webpack.config/react/dev'), 
+    require('../webpack.config/react/devServer').devServer
   );
 }
 
