@@ -6,23 +6,35 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
-    throw err;
-});
+// process.on('unhandledRejection', err => {
+//     throw err;
+// });
 
 const webpack = require('webpack');
 
-// build prod
-const config = require('../config/webpack.prod.config');
-function runWebpack(_config = {}) {
+// runWebpack
+function runWebpack(webpackConfig = {}) {
     return new Promise((resolve, reject) => {
-        return webpack(_config).run((err, stats) => {
+        return webpack(webpackConfig).run((err, stats) => {
             return err ? reject(err) : resolve(stats);
         });
     });
 }
 
+
+// Judge project type
+const { getProjectType } = require('../utils');
+
+
+// build prod
 (async function () {
+    let config;
+    const projectType = getProjectType();
+    if (projectType === 'vue') {
+        config = require('../webpack.config/vue/prod');
+    } else if (projectType === 'react') {
+        config = require('../webpack.config/react/prod');
+    }
     try {
         await runWebpack(config);
     } catch (error) {

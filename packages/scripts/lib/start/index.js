@@ -5,14 +5,15 @@ process.env.NODE_ENV = 'development';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
-  throw err;
-});
+// process.on('unhandledRejection', err => {
+//   throw err;
+// });
 
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server')
 
 // build dev
-// const config = require('../config/webpack.dev.config');
+// const config = require('../webpack.config/vue/dev');
 // function runWebpack(_config = {}) {
 //   return new Promise((resolve, reject) => {
 //       return webpack(_config).run((err, stats) => {
@@ -29,17 +30,39 @@ const webpack = require('webpack');
 //   }
 // })();
 
-// start dev server
-const WebpackDevServer = require('webpack-dev-server')
-const devConfig = require('../config/webpack.dev.config');
-const devServerConfig = require('../config/webpack.dev.server.config');
-const compiler = webpack(devConfig);
-const devServer = new WebpackDevServer(compiler, devServerConfig.devServer);
-const PORT = devServerConfig.devServer.port || process.env.PORT || 3000;
-const HOST = devServerConfig.devServer.host || process.env.HOST || '0.0.0.0';
-devServer.listen(PORT, HOST, err => {
-  if (err) {
-    return console.log(err);
-  }
-  console.log('Starting the development server...\n');
-})
+
+// Judge project type
+const { getProjectType } = require('../utils');
+const projectType = getProjectType();
+
+// vue project
+if ( projectType === 'vue') {
+  startDevServer(
+    require('../webpack.config/vue/dev'), 
+    require('../webpack.config/vue/devServer').devServer
+  );
+}
+// react project
+else if (projectType === 'react') {
+  startDevServer(
+    require('../webpack.config/vue/dev'), 
+    require('../webpack.config/vue/devServer').devServer
+  );
+}
+
+// startDevServer
+function startDevServer(webpackConfig, devServerConfig) {
+  const compiler = webpack(webpackConfig);
+  const devServer = new WebpackDevServer(
+    compiler,
+    devServerConfig,
+  );
+  const PORT = devServerConfig.port || process.env.PORT || 3000;
+  const HOST = devServerConfig.host || process.env.HOST || '0.0.0.0';
+  devServer.listen(PORT, HOST, err => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Starting the development server...\n');
+  });
+}

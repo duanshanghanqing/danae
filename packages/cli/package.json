@@ -1,6 +1,6 @@
 {
   "name": "danae-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a front end development build set",
   "author": "gaojunfeng <490771426@qq.com>",
   "bin": {

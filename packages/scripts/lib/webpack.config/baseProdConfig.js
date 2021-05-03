@@ -1,18 +1,16 @@
 const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-const webpackbaseconfig = require('./webpack.base.config');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 独立打包css
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css
 
-
-module.exports = merge(webpackbaseconfig, {
-    mode: 'development',
-    devtool: 'inline-source-map',
+module.exports = {
+    devtool: 'source-map',
+    mode: 'production',
     module: {
         rules: [
-            // 编译模板中的样式
             {
                 test: /\.css$/,
                 use: [
-                    { loader: 'style-loader' },
+                    { loader: MiniCssExtractPlugin.loader },
                     {
                         loader: 'css-loader',
                         options: {
@@ -25,8 +23,7 @@ module.exports = merge(webpackbaseconfig, {
             {
                 test: /\.less$/,
                 use: [
-                    // { loader: 'vue-style-loader' }, // 没什么用
-                    { loader: 'style-loader' },
+                    { loader: MiniCssExtractPlugin.loader },
                     {
                         loader: 'css-loader',
                         options: {
@@ -40,10 +37,17 @@ module.exports = merge(webpackbaseconfig, {
         ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: 'css/[name]-[hash].css',
+            chunkFilename: 'css/[id]-[hash].css'
+        }),
+        new OptimizeCssAssetsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                ENV: '"development"'
+                ENV: '"production"'
             }
         })
     ]
-});
+};

@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
 
 function queryEntryFile() {
     const returnData = {
@@ -39,19 +38,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.vue$/,
-                use: 'vue-loader' // 依赖 @vue/compiler-sfc
-            },
-            {
-                test: /\.ts$/,
-
-                loader: 'ts-loader',
-
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                }
-            },
-            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
@@ -78,10 +64,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.js', '.vue', '.json'],
-        alias: {
-            'vue': '@vue/runtime-dom'
-        },
+        extensions: ['.ts', '.js','.tsx', '.jsx', '.vue', '.json'],
         alias: {
             '@': path.join(__dirname, '..', 'src'),
         }
@@ -91,6 +74,5 @@ module.exports = {
             filename: 'index.html',
             template: './index.html'
         }),
-        new VueLoaderPlugin(),
     ],
 }
