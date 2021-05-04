@@ -8,7 +8,7 @@ module.exports = merge(require('../baseConfig'), {
                     {
                         loader: 'ts-loader',
                         options: {
-                            // configFile: path.resolve(__dirname, '../tsconfig.build.json'),
+                            configFile: path.resolve(__dirname, '../tsconfig.json'),
                         },
                     },
                 ],
