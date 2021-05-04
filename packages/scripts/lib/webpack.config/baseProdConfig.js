@@ -1,8 +1,10 @@
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const baseConfig = require('./baseConfig');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 独立打包css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css
 
-module.exports = {
+module.exports = merge(baseConfig, {
     devtool: 'source-map',
     mode: 'production',
     module: {
@@ -74,4 +76,4 @@ module.exports = {
             }
         })
     ]
-};
+});

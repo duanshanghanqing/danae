@@ -1,5 +1,4 @@
 const { merge } = require('webpack-merge');
-console.log(__dirname);
 module.exports = merge(require('../baseConfig'), {
     module: {
         rules: [

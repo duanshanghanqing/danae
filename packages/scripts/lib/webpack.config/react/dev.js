@@ -1,2 +1,8 @@
 const { merge } = require('webpack-merge');
-module.exports = merge(require('./base'), require('../baseDevConfig'));
+const { getProjectWebpackConfig } = require('../../utils');
+
+module.exports = merge(
+    require('../baseDevConfig'), 
+    require('./base'), 
+    getProjectWebpackConfig()
+);

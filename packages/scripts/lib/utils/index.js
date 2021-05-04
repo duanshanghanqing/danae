@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 function getProjectType() {
@@ -17,7 +18,18 @@ function getProjectType() {
     return '';
 }
 
+function getProjectWebpackConfig() {
+    const projectWebpackConfigPath = path.join(process.cwd(), 'webpack.config.js');
+    if (fs.existsSync(projectWebpackConfigPath)) {
+        const projectWebpackConfig = require(projectWebpackConfigPath);
+        if (projectWebpackConfig && typeof projectWebpackConfig === 'object') {
+            return projectWebpackConfig;
+        }
+    }
+    return {};
+}
 
 module.exports = {
     getProjectType,
+    getProjectWebpackConfig,
 }

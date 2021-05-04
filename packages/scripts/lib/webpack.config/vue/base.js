@@ -1,7 +1,7 @@
-const { merge } = require('webpack-merge');
+const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 
-module.exports = merge(require('../baseConfig'), {
+module.exports = {
     module: {
         rules: [
             {
@@ -9,6 +9,7 @@ module.exports = merge(require('../baseConfig'), {
                 loader: 'ts-loader',
                 options: {
                     appendTsSuffixTo: [/\.vue$/],
+                    configFile: path.resolve(__dirname, './tsconfig.json'),
                 }
             },
             {
@@ -25,4 +26,4 @@ module.exports = merge(require('../baseConfig'), {
     plugins: [
         new VueLoaderPlugin(),
     ],
-});
+};

@@ -37,16 +37,18 @@ const projectType = getProjectType();
 
 // vue project
 if ( projectType === 'vue') {
+  const webpackConfig = require('../webpack.config/vue/dev');
   startDevServer(
-    require('../webpack.config/vue/dev'), 
-    require('../webpack.config/vue/devServer').devServer
+    webpackConfig, 
+    webpackConfig.devServer
   );
 }
 // react project
 else if (projectType === 'react') {
+  const webpackConfig = require('../webpack.config/react/dev');
   startDevServer(
-    require('../webpack.config/react/dev'), 
-    require('../webpack.config/react/devServer').devServer
+    webpackConfig, 
+    webpackConfig.devServer
   );
 }
 
@@ -57,9 +59,8 @@ function startDevServer(webpackConfig, devServerConfig) {
     compiler,
     devServerConfig,
   );
-  const PORT = devServerConfig.port || process.env.PORT || 3000;
-  const HOST = devServerConfig.host || process.env.HOST || '0.0.0.0';
-  devServer.listen(PORT, HOST, err => {
+
+  devServer.listen(devServerConfig.port, devServerConfig.host, err => {
     if (err) {
       return console.log(err);
     }

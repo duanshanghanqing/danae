@@ -1,6 +1,16 @@
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const baseConfig = require('./baseConfig');
 
-module.exports = {
+module.exports = merge(baseConfig, {
+    devServer: {
+        port: 3000,
+        host: '0.0.0.0',
+        contentBase: './dist',
+        hot: true,
+        historyApiFallback: true, // 解决f5刷新界面报404问题
+        open: true,
+    },
     mode: 'development',
     devtool: 'inline-source-map',
     module: {
@@ -55,4 +65,4 @@ module.exports = {
             }
         })
     ]
-};
+});
