@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const baseConfig = require('./baseConfig');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 独立打包css
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(baseConfig, {
     devtool: 'source-map',
@@ -62,6 +62,15 @@ module.exports = merge(baseConfig, {
             }
         ]
     },
+    optimization: {
+        usedExports: true,
+        splitChunks: {
+            chunks: 'all'
+        },
+        minimizer: [
+            new OptimizeCSSAssetsPlugin()
+        ]
+    },
     plugins: [
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
@@ -69,7 +78,6 @@ module.exports = merge(baseConfig, {
             filename: 'css/[name]-[hash].css',
             chunkFilename: 'css/[id]-[hash].css'
         }),
-        new OptimizeCssAssetsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 ENV: '"production"'
