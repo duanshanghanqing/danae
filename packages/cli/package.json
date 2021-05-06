@@ -49,19 +49,9 @@
       "gitUrl": "https://github.com/duanshanghanqing/react-webpack-typescript.git"
     },
     {
-      "name": "React Server Side Render",
-      "value": "react_ssr",
-      "gitUrl": "https://github.com/duanshanghanqing/react-ssr.git"
-    },
-    {
       "name": "Vue3",
       "value": "vue3",
       "gitUrl": "https://github.com/duanshanghanqing/webpack5-vue3.git"
-    },
-    {
-      "name": "Vue3 Server Side Render",
-      "value": "vue3_ssr",
-      "gitUrl": "https://github.com/duanshanghanqing/vue3_ssr.git"
     }
   ]
 }
