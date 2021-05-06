@@ -1,6 +1,7 @@
 const path = require('path');
 const colors = require('colors');
 const pathExists = require('path-exists').sync;
+const fs = require('fs');
 const fse = require('fs-extra');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
@@ -53,6 +54,12 @@ module.exports = async function (projectName, options) {
     if (pathExists(getPath)) {
         fse.removeSync(getPath);
     }
+
+    // edit project name
+    const packageJsonPath = path.resolve(projectPath, 'package.json');
+    const packageJson = require(packageJsonPath);
+    packageJson.name = projectName;
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 4));
 
     // tree display directory
     const string = tree(projectPath, {
