@@ -1,13 +1,5 @@
 # a front end build script tool
 
-## install
-
-    npm install danae-scripts
-
-    or
-
-    yarn add danae-scripts
-
 ## support
 
     vue and reacr project
