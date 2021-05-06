@@ -46,12 +46,12 @@
     {
       "name": "React",
       "value": "react",
-      "gitUrl": "https://github.com/duanshanghanqing/react-webpack-typescript.git"
+      "gitUrl": "https://github.com/duanshanghanqing/react-webpack-typescript-template.git"
     },
     {
       "name": "Vue3",
       "value": "vue3",
-      "gitUrl": "https://github.com/duanshanghanqing/webpack5-vue3.git"
+      "gitUrl": "https://github.com/duanshanghanqing/webpack5-vue3-template.git"
     }
   ]
 }
