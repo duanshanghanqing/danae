@@ -5,7 +5,7 @@ async function init(pkg, cb) {
         console.log(require('colors').red(
             `you are using Node ${process.version}, this version of ${pkg.name} need Node ${pkg.engines.node}.\nplease upgrade the version.`
         ));
-        process.exit(1);
+        return;
     }
 
 
@@ -28,7 +28,7 @@ async function init(pkg, cb) {
 
     // check whether the scaffold needs to be updated
     const { getSemverVersions } = require('../index');
-    // 获取大于当前包的版本号列表
+    // Gets a list of version numbers greater than the current package
     const versions = await getSemverVersions(pkg.version, pkg.name);
     // const versions = await getSemverVersions('16.8.0', 'react');
     if (versions.length > 0) {
@@ -38,10 +38,9 @@ async function init(pkg, cb) {
 
     // import-local I have also seen this package. My understanding is that if there is a package installed locally, the local package will be preferred
     const importLocal = require('import-local');
-    // 使用本地文件
+    // Use local file
     if (importLocal(__filename)) {
-        require('npmlog').info('cli', `正在使用 ${pkg.name} 本地版本`);
-        process.exit(1);
+        require('npmlog').info('cli', `In use ${pkg.name} local version`);
     }
 
     cb();
