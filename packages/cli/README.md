@@ -24,3 +24,15 @@
 ## create a project or package
 
     danae create hello-world
+
+## support template list
+
+    danae create --show
+###
+    react-web-template
+    react-library-template
+    react-ssr-template
+    vue2-web-template
+    vue3-web-template
+    vue3-library-template
+    vue3_ssr-template

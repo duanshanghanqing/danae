@@ -11,13 +11,13 @@ const pkg = require('../../package.json');
 
 module.exports = async function (projectName, options) {
     // View the supported created project types
-    const frameTypes = pkg['frame-types'];
-    if (!Array.isArray(frameTypes) || (Array.isArray(frameTypes) && frameTypes.length === 0)) {
+    const templates = pkg['templates'];
+    if (!Array.isArray(templates) || (Array.isArray(templates) && templates.length === 0)) {
         return;
     }
     if (options.show) {
-        frameTypes.forEach((typeItem) => {
-            console.log(colors.green(typeItem.name));
+        templates.forEach((template) => {
+            console.log(colors.green(template.name));
         });
         return;
     }
@@ -30,19 +30,18 @@ module.exports = async function (projectName, options) {
     }
 
     // select the type of project to create
-    const { frameType } = await inquirer.prompt({
+    const { templateValue } = await inquirer.prompt({
         type: 'list',
-        name: 'frameType',
-        message: 'please select item (package) type',
-        default: frameTypes[0].value,
-        choices: frameTypes,
+        name: 'templateValue',
+        message: 'please select template type',
+        default: templates[0].value,
+        choices: templates,
     });
-    const frameTypeItem = frameTypes.find((item) => item.value === frameType);
 
     // clone project 
     const spinner = spinnerStart('downloading');
     try {
-        await gitClone(frameTypeItem.gitUrl, projectName);
+        await gitClone(templateValue, projectName);
     } catch (error) {
         console.log(colors.red.underline('failed to create, please operate again'));
         return;
@@ -71,40 +70,42 @@ module.exports = async function (projectName, options) {
     console.log(`Creating a new app in ${colors.green(projectPath)}`);
 
 
-    // remind the user whether to run the project
-    const { isRun } = await inquirer.prompt({
-        type: 'confirm',
-        name: 'isRun',
-        message: 'Is it running',
-        default: true,
-        // choices: frameTypes,
-    });
-    if (!isRun) {
-        console.log('')
-        console.log('We suggest that you begin by typing:');
-        console.log('');
-        console.log(`${colors.green('cd')} ${projectPath}`);
-        console.log(`${colors.green('npm install')} or ${colors.green('yarn install')}`);
-        console.log(`${colors.green('npm start')} or ${colors.green('yarn start')}`);
-        console.log('');
-        console.log('Happy hacking!')
-        return;
+    if (templateValue.includes('-web')) {
+        // remind the user whether to run the project
+        const { isRun } = await inquirer.prompt({
+            type: 'confirm',
+            name: 'isRun',
+            message: 'Is it running',
+            default: true,
+            // choices: frameTypes,
+        });
+        if (!isRun) {
+            console.log('')
+            console.log('We suggest that you begin by typing:');
+            console.log('');
+            console.log(`${colors.green('cd')} ${projectPath}`);
+            console.log(`${colors.green('npm install')} or ${colors.green('yarn install')}`);
+            console.log(`${colors.green('npm start')} or ${colors.green('yarn start')}`);
+            console.log('');
+            console.log('Happy hacking!')
+            return;
+        }
+
+        // enter the project
+        shell.cd(projectName);
+
+        // install
+        const installSpinner = spinnerStart('installing');
+        try {
+            await exec('npm install');
+        } catch (error) {
+            console.log(colors.red.underline('installation failed, please operate again'));
+            return;
+        } finally {
+            installSpinner.stop(true);
+        }
+
+        // start
+        shell.exec('npm start');
     }
-
-    // enter the project
-    shell.cd(projectName);
-
-    // install
-    const installSpinner = spinnerStart('installing');
-    try {
-        await exec('npm install');
-    } catch (error) {
-        console.log(colors.red.underline('installation failed, please operate again'));
-        return;
-    } finally {
-        installSpinner.stop(true);
-    }
-
-    // start
-    shell.exec('npm start');
 }

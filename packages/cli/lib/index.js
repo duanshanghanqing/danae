@@ -5,8 +5,8 @@ const program = new Command();
 
 module.exports = function () {
 
-    program._helpDescription = 'view help';
-    program._helpCommandDescription = 'view command help';
+    program._helpDescription = 'show help';
+    program._helpCommandDescription = 'show command help';
     program
         .name(Object.keys(pkg.bin)[0])
         .usage('<command> [options]')
@@ -15,7 +15,7 @@ module.exports = function () {
     // canna create projectName
     program.command('create [projectName]')
         .description('create a project or package')
-        .option('-s, --show', 'view the types that support project creation')
+        .option('-s, --show', 'show template list')
         .action((projectName, options) => {
             require('./create')(projectName, options);
         });

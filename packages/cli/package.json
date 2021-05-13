@@ -1,6 +1,6 @@
 {
   "name": "danae-cli",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "a front end development build set",
   "author": "gaojunfeng <490771426@qq.com>",
   "bin": {
@@ -42,16 +42,34 @@
   "engines": {
     "node": "^12.0.0 || >= 14.0.0"
   },
-  "frame-types": [
+  "templates": [
     {
-      "name": "React",
-      "value": "react",
-      "gitUrl": "https://github.com/duanshanghanqing/react-webpack-typescript-template.git"
+      "name": "react-web-template",
+      "value": "https://github.com/duanshanghanqing/react-web-template.git"
     },
     {
-      "name": "Vue3",
-      "value": "vue3",
-      "gitUrl": "https://github.com/duanshanghanqing/webpack5-vue3-template.git"
+      "name": "react-library-template",
+      "value": "https://github.com/duanshanghanqing/react-library-template.git"
+    },
+    {
+      "name": "react-ssr-template",
+      "value": "https://github.com/duanshanghanqing/react-ssr-template.git"
+    },
+    {
+      "name": "vue2-web-template",
+      "value": "https://github.com/duanshanghanqing/vue2-web-template.git"
+    },
+    {
+      "name": "vue3-web-template",
+      "value": "https://github.com/duanshanghanqing/vue3-web-template.git"
+    },
+    {
+      "name": "vue3-library-template",
+      "value": "https://github.com/duanshanghanqing/vue3-library-template.git"
+    },
+    {
+      "name": "vue3_ssr-template",
+      "value": "https://github.com/duanshanghanqing/vue3_ssr-template.git"
     }
   ]
 }
