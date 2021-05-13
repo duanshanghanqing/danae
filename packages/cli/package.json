@@ -1,6 +1,6 @@
 {
   "name": "danae-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a front end development build set",
   "author": "gaojunfeng <490771426@qq.com>",
   "bin": {
@@ -68,8 +68,8 @@
       "value": "https://github.com/duanshanghanqing/vue3-library-template.git"
     },
     {
-      "name": "vue3_ssr-template",
-      "value": "https://github.com/duanshanghanqing/vue3_ssr-template.git"
+      "name": "vue3-ssr-template",
+      "value": "https://github.com/duanshanghanqing/vue3-ssr-template.git"
     },
     {
       "name": "typescript-library-template",
