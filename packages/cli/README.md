@@ -36,3 +36,4 @@
     vue3-web-template
     vue3-library-template
     vue3_ssr-template
+    typescript-library-template
